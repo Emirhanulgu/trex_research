@@ -352,6 +352,14 @@ Performanslı, güvenli ve ölçeklenebilir uygulamalar geliştirmeyi mümkün k
 <summary>.NET Framework, .NET Core ve .NET 7/8+ farkları</summary>
 
 <img width="1793" height="980" alt="3103b3d4-4683-4e3c-9dbf-8854276eac22" src="https://github.com/user-attachments/assets/610d3e75-a682-4eb4-bb24-608392d070f5" />
+</details>
+<details>
+
+<summary>Senkron Ve Asenkron Programlama</summary>
+
+
+
+
 
 
   
