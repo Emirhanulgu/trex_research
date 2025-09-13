@@ -1081,6 +1081,203 @@ UPDATE Customers SET City = 'İstanbul' WHERE Name = 'Eren';
 DELETE FROM Customers WHERE Name = 'Eren';
 ```
 
+</details>
+
+<details>
+<summary><strong>İlişkisel ve ilişkisel olmayan veri tabanları arasındaki farklar<strong></summary>
+
+
+### 1. İlişkisel Veritabanı (RDBMS)
+- Veriler **tablolar** halinde saklanır (satır ve sütun).  
+- Tablolar arasında **ilişkiler (foreign key)** vardır.  
+- **SQL dili** kullanılır.  
+- Veriler tutarlı ve güvenilir şekilde yönetilir.  
+
+**Örnekler:** MySQL, PostgreSQL, SQL Server, Oracle  
+
+---
+
+### 2. İlişkisel Olmayan Veritabanı (NoSQL)
+- Veriler tablolar yerine farklı yapılarda saklanır:  
+  - **Document** (JSON benzeri) → MongoDB  
+  - **Key-Value** → Redis  
+  - **Column-based** → Cassandra  
+  - **Graph** → Neo4j  
+- Esnek şema (schema-less) vardır.  
+- Yüksek hız, esneklik ve ölçeklenebilirlik sunar.  
+
+**Örnekler:** MongoDB, Redis, Cassandra, Neo4j  
+
+---
+
+### Temel Farklar
+
+| Özellik              | İlişkisel Veritabanı (SQL) | İlişkisel Olmayan Veritabanı (NoSQL) |
+|-----------------------|----------------------------|---------------------------------------|
+| **Veri Yapısı**       | Tablo (rows, columns)      | JSON/Döküman, Key-Value, Graph, Column |
+| **İlişkiler**         | Tablo ilişkileri (JOIN)    | Genelde yok, denormalize veri          |
+| **Sorgu Dili**        | SQL                        | Kendi sorgu yapısı (ör. Mongo Query)  |
+| **Şema (Schema)**     | Katı, önceden tanımlı      | Esnek, schema-less                     |
+| **Ölçeklenebilirlik** | Dikey (vertical)           | Yatay (horizontal)                     |
+| **Kullanım Alanı**    | Finans, ERP, CRM, geleneksel uygulamalar | Büyük veri, IoT, sosyal medya, gerçek zamanlı uygulamalar |
+
+---
+
+</details>
+
+<details>
+<summary><strong>ORM nedir? Entity Framework Core nedir?<strong></summary>
+
+
+### ORM (Object Relational Mapping) Nedir?
+- **ORM**, programlama dilindeki nesneler (class, object) ile **ilişkisel veritabanı tabloları** arasında köprü kuran bir tekniktir.  
+- Yani, veritabanındaki tabloları **C# sınıfları**, satırları ise **nesneler** gibi kullanmamıza imkân tanır.  
+- SQL sorgularını elle yazmak yerine, nesneler üzerinden veritabanı işlemleri yapılır.  
+
+**Avantajları:**
+- Daha az SQL kodu yazılır.  
+- Kod daha okunabilir ve bakımı kolay olur.  
+- Veritabanı bağımsızlığı sağlar (farklı veritabanlarıyla kullanılabilir).  
+- Nesne yönelimli programlama ile uyumludur.  
+
+---
+
+### Entity Framework Core Nedir?
+- **Entity Framework Core (EF Core)**, Microsoft tarafından geliştirilen bir **ORM aracıdır**.  
+- ASP.NET Core projelerinde en çok kullanılan veri erişim teknolojisidir.  
+- Farklı veritabanlarını (SQL Server, PostgreSQL, MySQL, SQLite, Oracle vb.) destekler.  
+- Açık kaynaklı ve cross-platform çalışır.  
+
+**Avantajları:**
+- LINQ (Language Integrated Query) desteği ile SQL yazmadan sorgu yapılabilir.  
+- Migration sistemi ile veritabanı tabloları otomatik yönetilebilir.  
+- Kod-first veya database-first yaklaşımı kullanılabilir.  
+
+---
+
+</details>
+
+<details>
+<summary><strong>DbContext Nedir? Nasıl Kullanılır??<strong></summary>
+
+### DbContext Nedir?
+- **DbContext**, Entity Framework Core’da **veritabanı ile uygulama arasındaki köprü**dür.  
+- Veritabanındaki tabloları, C# sınıfları (Entity) ile eşleştirir.  
+- CRUD işlemleri (Create, Read, Update, Delete) için gerekli fonksiyonları sağlar.  
+- EF Core’un en temel sınıfıdır, `Microsoft.EntityFrameworkCore` namespace’i içinde bulunur.  
+
+---
+
+## DbContext Kullanım Örneği
+
+```
+csharp
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Linq;
+
+// Entity (Tablo)
+public class User
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+}
+
+// DbContext
+public class AppDbContext : DbContext
+{
+    public DbSet<User> Users { get; set; }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseSqlServer("Server=.;Database=MyDb;Trusted_Connection=True;");
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        using var context = new AppDbContext();
+
+        // Ekleme
+        context.Users.Add(new User { Name = "Emir" });
+        context.SaveChanges();
+
+        // Okuma
+        var users = context.Users.ToList();
+        foreach (var user in users)
+        {
+            Console.WriteLine(user.Name);
+        }
+    }
+}
+
+```
+
+</details>
+
+<details>
+<summary><strong>LINQ nedir? En çok kullanılan LINQ ifadeleri<strong></summary>
+
+## LINQ Nedir?
+- **LINQ (Language Integrated Query)**, .NET ortamında **veri kaynaklarını (koleksiyonlar, veritabanı, XML, vs.) sorgulamak için** kullanılan bir yapıdır.  
+- SQL'e benzer şekilde çalışır ama **C# kodunun içine gömülü** halde yazılır.  
+- Çalıştığı veri kaynakları: List, Array, Dictionary, Entity Framework, XML, JSON vb.  
+
+---
+
+## En Çok Kullanılan LINQ İfadeleri
+
+```
+csharp
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+class Program
+{
+    static void Main()
+    {
+        var numbers = new List<int> { 1, 2, 3, 4, 5, 6 };
+        var names = new List<string> { "Ali", "Ayşe", "Emir" };
+
+        // 1. Where (Filtreleme)
+        var evenNumbers = numbers.Where(n => n % 2 == 0);
+        Console.WriteLine("Where: " + string.Join(", ", evenNumbers)); // 2, 4, 6
+
+        // 2. Select (Veri seçme/dönüştürme)
+        var upperNames = names.Select(n => n.ToUpper());
+        Console.WriteLine("Select: " + string.Join(", ", upperNames)); // ALI, AYŞE, EMIR
+
+        // 3. OrderBy / OrderByDescending (Sıralama)
+        var sorted = numbers.OrderBy(n => n);
+        Console.WriteLine("OrderBy: " + string.Join(", ", sorted)); // 1, 2, 3, 4, 5, 6
+
+        var sortedDesc = numbers.OrderByDescending(n => n);
+        Console.WriteLine("OrderByDescending: " + string.Join(", ", sortedDesc)); // 6, 5, 4, 3, 2, 1
+
+        // 4. First / FirstOrDefault
+        Console.WriteLine("First: " + numbers.First());                 // 1
+        Console.WriteLine("FirstOrDefault: " + numbers.FirstOrDefault()); // 1
+
+        // 5. Any / All
+        Console.WriteLine("Any > 3: " + numbers.Any(n => n > 3)); // True
+        Console.WriteLine("All > 0: " + numbers.All(n => n > 0)); // True
+
+        // 6. Count / Sum / Average / Max / Min
+        Console.WriteLine("Count: " + numbers.Count());     // 6
+        Console.WriteLine("Sum: " + numbers.Sum());         // 21
+        Console.WriteLine("Average: " + numbers.Average()); // 3.5
+        Console.WriteLine("Max: " + numbers.Max());         // 6
+        Console.WriteLine("Min: " + numbers.Min());         // 1
+    }
+}
+```
+
+
+
+
 
 
 
