@@ -1061,8 +1061,25 @@ Amaç: Uygulamayı bağımsız, esnek ve kolay test edilebilir hale getirmektir.
 <details>
 <summary><strong>SQL nedir?<strong></summary>
 
+## SQL nedir?
+- SQL, ilişkisel veri tabanlarını yönetmek, SQL veri tabanları oluşturmak ve farklı işlevler gerçekleştirerek içlerindeki verileri manipüle etmek için standartlaştırılmış bir programlama dilidir.
+- Hem veri tabanı yöneticileri hem de geliştiriciler SQL’i verileri manipüle etmek ve veri entegrasyon komut dosyaları yazmak için kullanır. Benzer şekilde, veri analistleri de ilişkisel bir veri tabanını derinlemesine analiz etmek için SQL kullanır.
 
 
+**4 temel SQL sorgusuna örnek**
+```
+-- 1. SELECT → Veri listeleme
+SELECT * FROM Customers;
+
+-- 2. INSERT → Yeni veri ekleme
+INSERT INTO Customers (Name, City) VALUES ('Eren', 'Zonguldak');
+
+-- 3. UPDATE → Veri güncelleme
+UPDATE Customers SET City = 'İstanbul' WHERE Name = 'Eren';
+
+-- 4. DELETE → Veri silme
+DELETE FROM Customers WHERE Name = 'Eren';
+```
 
 
 
