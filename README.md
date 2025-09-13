@@ -450,7 +450,7 @@ public override string ToString() => $"Name: {Name}";
   - Geleneksel anonim metod yazımına kıyasla daha derli toplu bir alternatiftir.
 </details>
 
-## Backend Geliştirme Temelleri🅱️
+## 3.Backend Geliştirme Temelleri🅱️
 
 <details>
 <summary><strong>Backend Nedir? Frontend İle Farkları<strong></summary>
@@ -664,6 +664,431 @@ Host: www.ornekapi.com
 - Web API’leri ile veri göndermek ve almak
 - JavaScript uygulamalarında veri depolamak
 - Sunucular ve istemciler arasında iletişim
+
+</details>
+
+
+<details>
+<summary><strong>SOAP ve GraphQL nedir, REST' ten farkları<strong></summary>
+
+
+### 1. SOAP (Simple Object Access Protocol)
+- XML tabanlı bir web servis protokolüdür.  
+- Çok katı kurallara sahiptir, güvenlik özellikleri güçlüdür.  
+- Daha çok kurumsal sistemlerde (banka, sigorta vb.) tercih edilir.  
+- Ağır çalışır ve modern web uygulamalarında az kullanılır.  
+
+### 2. REST (Representational State Transfer)
+- HTTP üzerinden çalışan en yaygın web servis mimarisi.  
+- Veri genellikle JSON formatında gönderilir/alınır.  
+- Basit, hızlı ve hafif yapısıyla modern web uygulamalarında en çok tercih edilen yöntemdir.  
+- Stateless (durumsuz) çalışır, her istek bağımsızdır.  
+
+### 3. GraphQL
+- Facebook tarafından geliştirilmiş modern API sorgulama dilidir.  
+- Tek endpoint üzerinden çalışır.  
+- İstemci sadece ihtiyaç duyduğu veriyi alır (over-fetching ve under-fetching sorunlarını çözer).  
+- REST’ten daha esnek ama öğrenmesi biraz daha zordur.  
+
+---
+
+
+### Önemli Farklar
+
+| Özellik          | SOAP                      | REST                          | GraphQL                          |
+|------------------|---------------------------|-------------------------------|-----------------------------------|
+| Veri Formatı     | XML                      | Genelde JSON (XML de olabilir)| JSON                             |
+| Karmaşıklık      | Karmaşık                 | Basit                        | Orta                             |
+| Kullanım Alanı   | Kurumsal sistemler        | Web/Mobil uygulamalar         | Modern web uygulamaları          |
+| Esneklik         | Düşük                    | Orta                         | Yüksek (alan seçilebiliyor)      |
+| Performans       | Daha yavaş               | Hızlı                        | Çok hızlı (gereksiz veri yok)    |
+
+---
+
+</details>
+
+## 4.ASP.NET 🛜
+
+<details>
+<summary><strong>ASP.NET ve ASP.NET Core nedir? Avantajları farkları<strong></summary>
+
+
+## ASP.NET ve ASP.NET Core Nedir? Avantajları ve Farkları
+
+### ASP.NET Nedir?
+- Microsoft tarafından geliştirilmiş **web uygulamaları geliştirme framework’üdür**.  
+- .NET Framework üzerinde çalışır (Windows tabanlıdır).  
+- Web Forms, MVC ve Web API gibi farklı geliştirme modelleri içerir.  
+- 2000’li yıllardan itibaren yaygın olarak kullanılmıştır.  
+
+**Avantajları:**
+- Windows ortamı için güçlü destek  
+- Visual Studio ile entegre çalışır  
+- Geniş topluluk ve kütüphane desteği  
+
+---
+
+### ASP.NET Core Nedir?
+- Microsoft’un 2016’da çıkardığı **modern, açık kaynaklı ve cross-platform** framework’tür.  
+- .NET Core üzerine inşa edilmiştir.  
+- Hem Windows, hem Linux, hem de macOS üzerinde çalışabilir.  
+- Yüksek performans, esneklik ve bulut odaklı projeler için geliştirilmiştir.  
+
+**Avantajları:**
+- Cross-platform (Windows, Linux, macOS) desteği  
+- Daha hafif ve yüksek performanslı  
+- Modern mimari (Dependency Injection, Middleware)  
+- Açık kaynak (GitHub üzerinden geliştiriliyor)  
+- Mikroservis ve bulut tabanlı sistemlere uygun  
+
+---
+
+### ASP.NET vs ASP.NET Core Farkları
+
+| Özellik              | ASP.NET (Framework)             | ASP.NET Core                      |
+|----------------------|---------------------------------|-----------------------------------|
+| **Çalışma Ortamı**   | Sadece Windows                  | Windows, Linux, macOS (cross-platform) |
+| **Performans**       | Daha yavaş                      | Daha hızlı ve optimize            |
+| **Açık Kaynak**      | Hayır                           | Evet                              |
+| **Modüler Yapı**     | Monolitik (büyük yapı)          | Modüler (middleware tabanlı)      |
+| **Bulut Desteği**    | Kısıtlı                         | Bulut ve mikroservis dostu        |
+| **Geliştirme Modeli**| Web Forms, MVC, Web API         | MVC, Razor Pages, Blazor, Minimal API |
+
+---
+
+</details>
+
+<details>
+<summary><strong>MVC nedir ne için kullanılır?<strong></summary>
+
+
+**MVC (Model - View - Controller)**, yazılım geliştirmede kullanılan bir **mimari desendir**.  
+Amaç: **Uygulamayı farklı katmanlara ayırarak daha düzenli, esnek ve bakımı kolay hale getirmek.**
+
+### Katmanlar:
+1. **Model (M):**
+ - Uygulamanın **veri ve iş mantığını** içerir.
+- Veritabanı ile iletişimi sağlar.
+- Örn: Kullanıcı bilgilerini saklayan `User` sınıfı.
+
+2. **View (V):**
+- Kullanıcıya gösterilen **arayüz kısmıdır**.
+- HTML, CSS, JavaScript veya Razor sayfaları olabilir.
+- Örn: Kullanıcının profil sayfası.
+
+3. **Controller (C):**
+- Kullanıcıdan gelen isteği alır, gerekli işlemleri yapar ve sonucu View’a gönderir.
+- Örn: `UserController` → kullanıcı bilgilerini alıp View’a yollar.
+
+---
+
+### MVC’nin Kullanım Amacı:
+- Kodun **daha düzenli ve okunabilir** olmasını sağlar.  
+- **Bakım ve geliştirmeyi kolaylaştırır.**  
+- Takım çalışmasında kolaylık:  
+- Backend geliştirici **Model** ile ilgilenir.  
+- Frontend geliştirici **View** kısmını yapar.  
+- Controller, bu ikisini birbirine bağlar.  
+
+---
+
+</details>
+
+<details>
+<summary><strong>Middleware nedir ne için kullanılır?<strong></summary>
+
+## Middleware Nedir? Ne İçin Kullanılır?
+
+**Middleware**, ASP.NET Core uygulamalarında **HTTP isteklerini ve cevaplarını işleyen yazılım bileşenleridir**.  
+Yani, **istemci (client) ile sunucu (server) arasındaki istek/cevap akışını yöneten küçük parçalar**dır.
+
+---
+
+### Ne İçin Kullanılır?
+- Gelen istekleri kontrol etmek ve işlemek  
+- Yanıtı (response) değiştirmek veya yönlendirmek  
+- Hata yönetimi yapmak  
+- Kimlik doğrulama (Authentication) ve yetkilendirme (Authorization) işlemleri  
+- Loglama ve performans takibi  
+- Statik dosya sunmak (CSS, JS, resimler vb.)  
+
+---
+
+### Çalışma Mantığı
+Middleware bileşenleri **pipeline (boru hattı)** mantığıyla çalışır.  
+- Her gelen istek sırasıyla middleware’lerden geçer.  
+- Her middleware isteği işleyebilir, değiştirebilir veya bir sonrakine iletebilir.  
+- Son middleware cevap (response) üretip geriye döner.  
+
+---
+
+### Basit Örnek (ASP.NET Core Program.cs)
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+// Middleware 1: Basit log
+app.Use(async (context, next) =>
+{
+    Console.WriteLine("İstek geldi: " + context.Request.Path);
+    await next.Invoke(); // bir sonraki middleware'e geç
+});
+
+// Middleware 2: Statik dosyalar
+app.UseStaticFiles();
+
+// Middleware 3: Routing
+app.MapGet("/", () => "Merhaba Middleware!");
+
+app.Run();
+```
+
+</details>
+
+<details>
+<summary><strong>Dependency Injection (DI) nedir neden önemlidir?<strong></summary>
+
+## Dependency Injection (DI) Nedir? Neden Önemlidir?
+
+**Dependency Injection (Bağımlılık Enjeksiyonu)**, yazılım geliştirmede kullanılan bir tasarım desenidir.  
+Amaç: Sınıfların birbirine olan **bağımlılığını azaltmak** ve **esneklik, test edilebilirlik** sağlamaktır.  
+
+---
+
+### Neden Önemlidir?
+- Kodun **daha esnek** ve **bakımı kolay** olur.  
+- Sınıflar birbirine sıkı sıkıya bağlı olmaz (**loosely coupled**).  
+- Mock nesnelerle **kolay test yapılabilir**.  
+- Gereksiz kod tekrarını önler.  
+
+---
+
+## Dependency Injection (Doğru Kullanım Örneği)
+
+```csharp
+// Interface
+public interface IUserRepository
+{
+    string GetUserById(int id);
+}
+
+// Concrete class
+public class UserRepository : IUserRepository
+{
+    public string GetUserById(int id) => "Kullanıcı: Bayram";
+}
+
+// Service (DI ile bağımlılık azaltıldı)
+public class UserService
+{
+    private readonly IUserRepository _repo;
+
+    public UserService(IUserRepository repo)
+    {
+        _repo = repo; // dışarıdan enjekte edildi
+    }
+
+    public void GetUser()
+    {
+        Console.WriteLine(_repo.GetUserById(1));
+    }
+}
+
+// Program.cs (ASP.NET Core DI Container)
+var builder = WebApplication.CreateBuilder(args);
+
+// Bağımlılıkları kaydet
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<UserService>();
+
+var app = builder.Build();
+
+app.MapGet("/", (UserService userService) =>
+{
+    userService.GetUser();
+    return "Çalıştı!";
+});
+
+app.Run();
+```
+</details>
+
+<details>
+<summary><strong>Katmanlı Mimari(Layered Architecture)<strong></summary>
+
+<br>
+ 
+**Katmanlı Mimari (Layered Architecture)**, uygulamayı farklı sorumluluklara ayırarak daha **düzenli, esnek ve bakımı kolay** hale getiren bir yazılım yaklaşımıdır.  
+
+<br>
+
+**En yaygın kullanılan 3 katman şunlardır:**
+
+---
+
+### 1. Presentation Layer (Sunum Katmanı)
+- Kullanıcı ile doğrudan etkileşimde bulunan katmandır.  
+- Web arayüzü (HTML, CSS, JS, Razor Pages, Blazor) veya mobil uygulama olabilir.  
+- Kullanıcıdan gelen veriyi **Business Layer**’a gönderir, oradan gelen sonucu ekrana yansıtır.  
+
+Örnek:  
+- ASP.NET MVC Controller  
+- Blazor / Razor Page  
+- Angular, React, Vue arayüzü  
+
+---
+
+### 2. Business Layer (İş Katmanı)
+- Uygulamanın **iş kurallarını ve mantığını** barındırır.  
+- Sunum katmanından gelen verileri işler, doğrulamalar yapar, gerekirse Data Access katmanına iletir.  
+- İş süreçlerinin merkezi burasıdır.  
+
+Örnek:  
+- Kullanıcı kayıt olurken şifre kontrolü  
+- Ürün eklerken stok miktarını kontrol etmek  
+
+---
+
+### 3. Data Access Layer (Veri Erişim Katmanı)
+- Veritabanı ile iletişimi sağlar.  
+- CRUD (Create, Read, Update, Delete) işlemleri bu katmanda yapılır.  
+- ORM (Entity Framework, Dapper) veya SQL sorguları kullanılır.  
+
+Örnek:  
+- `UserRepository` → veritabanından kullanıcı bilgilerini çeker  
+- `ProductRepository` → ürünleri ekler, siler, günceller  
+
+---
+
+<img width="300" height="300" alt="ChatGPT Image 13 Eyl 2025 15_06_53" src="https://github.com/user-attachments/assets/159c0efb-b286-4cb1-9e2a-de4044e49be2" />
+
+</details>
+
+<details>
+<summary><strong>Clean Architecture<strong></summary>
+
+
+
+Bu katmanlar genellikle **Clean Architecture** veya **Onion Architecture** yaklaşımında kullanılır.  
+Amaç: Uygulamayı bağımsız, esnek ve kolay test edilebilir hale getirmektir.  
+
+---
+
+### 1. Domain Layer (Alan Katmanı)
+- Uygulamanın **kalbidir**.  
+- İş kuralları, **entity**’ler ve domain servisleri burada bulunur.  
+- Başka hiçbir katmana bağımlı değildir.  
+
+Örn: `User`, `Product`, `Order` gibi entity sınıfları.  
+
+---
+
+### 2. Application Layer (Uygulama Katmanı)
+- **Domain** katmanındaki kuralları kullanarak uygulamanın iş akışını yönetir.  
+- **Use Case**’ler ve servisler burada bulunur.  
+- Domain’e bağımlıdır ama Infrastructure’a bağımlı değildir.  
+
+Örn: `"Kullanıcı kaydı oluştur",` `"Sipariş ver"` gibi senaryolar.  
+
+---
+
+### 3. Infrastructure Layer (Altyapı Katmanı)
+- Veritabanı, dosya sistemi, üçüncü parti servisler gibi **teknik detayları** içerir.  
+- **Data Access** (Repository), e-posta gönderimi, loglama gibi işlemler burada yapılır.  
+- Application ve Domain katmanlarına hizmet eder.  
+
+Örn: `Entity Framework, Dapper, SMTP, Redis, File Storage.`
+
+---
+
+### 4. API Layer (Sunum Katmanı)
+- Dış dünya ile iletişim kurulan katmandır.  
+- Kullanıcı veya istemcilerden gelen istekleri alır, **Application Layer**’a iletir.  
+- ASP.NET Core Web API, GraphQL API, gRPC vb. olabilir.  
+
+Örn: `UserController`, `ProductController`.  
+
+---
+
+<hr>
+
+
+### Katmanlar Arası İlişki
+- **API → Application → Domain → Infrastructure**  
+- Dışarıdan içeriye bağımlılık vardır, iç katmanlar dış katmanlara bağımlı değildir.  
+
+---
+
+
+
+## Clean Architecture** prensiplerinden en önemlisi:  
+**Bağımlılıklar her zaman dış katmanlardan iç katmanlara doğru akmalıdır.**  
+
+---
+
+### Ne Demek?
+- İç katmanlar (**Domain, Application**) dış katmanlara bağımlı OLMAZ.  
+- Dış katmanlar (**Infrastructure, API**) iç katmanlara bağımlıdır.  
+- Böylece iş kuralları (Domain) **teknolojiden bağımsız** kalır.  
+
+---
+
+### Örnek
+- **Yanlış:** Domain katmanı doğrudan Entity Framework’e (Infrastructure) bağımlı olursa → Veritabanı değiştiğinde Domain de değişir.  
+- **Doğru:** Domain katmanı sadece **arayüz (interface)** tanımlar. Entity Framework veya başka bir veri kaynağı bu interface’i **Infrastructure** tarafında uygular.  
+
+---
+
+### Akış
+- API → Application → Domain  
+- Domain **bağımsız**dır, dış katmanlardan hiçbir şey bilmez.  
+- Infrastructure, Domain ve Application tarafından tanımlanan interface’leri uygular.  
+
+---
+
+### Özet
+- **Bağımlılıkların dışa akması ilkesi:** İç katmanlar dış katmanlara bağımlı değil, dış katmanlar iç katmanlara bağımlıdır.  
+- Avantajları:  
+  - İş kuralları korunur  
+  - Teknolojiden bağımsız geliştirme  
+  - Kolay test edilebilirlik
+ 
+</details>
+
+ 
+## 5.VeriTabanı ve ORM
+
+<details>
+<summary><strong>SQL nedir?<strong></summary>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
