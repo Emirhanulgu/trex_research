@@ -1583,43 +1583,329 @@ class Program
 
   <summary><strong>ASP.NET Core'da logging altyapısı</strong></summary>
 
+  # ASP.NET Core Logging
+
+- **Servis:** `ILogger<T>` kullanılır
+- **Log Seviyeleri:** Trace < Debug < Information < Warning < Error < Critical
+- **Sağlayıcılar:** Console, Debug, EventLog, File (Serilog/NLog)
+
+
+ **Kullanım Örneği:**
+
+```
+csharp
+app.MapGet("/", (ILogger<Program> logger) =>
+{
+    logger.LogInformation("Info log örneği");
+    logger.LogWarning("Warning log örneği");
+    logger.LogError("Error log örneği");
+    return "Logging çalıştı!";
+});
+
+ ```
   
+</details>
 
+<details>
+<summary><strong>Global exception handling nasıl yapılır?</strong></summary>
+
+# ASP.NET Core Global Exception Handling
+
+- Global exception handling, uygulamadaki tüm hataları merkezi bir yerde yakalamak ve yönetmek için kullanılır.  
+- Bu sayede **her controller veya action içinde try-catch yazmaya gerek kalmaz**.
+
+---
+
+## 1️⃣ Middleware ile Global Exception Handling
+
+```csharp
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+using System.Net;
+using System.Text.Json;
+
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+// Global Exception Middleware
+app.Use(async (context, next) =>
+{
+    try
+    {
+        await next();
+    }
+    catch (Exception ex)
+    {
+        context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+        context.Response.ContentType = "application/json";
+
+        var response = new { message = ex.Message, status = context.Response.StatusCode };
+        await context.Response.WriteAsync(JsonSerializer.Serialize(response));
+    }
+});
+
+app.MapGet("/", () =>
+{
+    throw new Exception("Global exception örneği");
+});
+
+app.Run();
+```
+
+</details>
+
+<details>
   
+<summary><strong>UseExceptionHandler ve ILogger nasıl kullanılır?</strong></summary>
+
+### UseExceptionHandler Nedir?
+- **UseExceptionHandler:** Uygulamadaki tüm hataları merkezi bir noktada yakalayan middleware.
+
+### ILogger Nedir?
+- **ILogger:** Hata veya uygulama olaylarını loglamak için kullanılan arayüz.
+
+## Kullanım Örneği
+
+```
+csharp
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
+using System.Text.Json;
+
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+// Global hata yakalama + loglama
+app.UseExceptionHandler(errorApp =>
+{
+    errorApp.Run(async context =>
+    {
+        var logger = context.RequestServices.GetRequiredService<ILogger<Program>>();
+        var exceptionFeature = context.Features.Get<IExceptionHandlerFeature>();
+
+        if (exceptionFeature != null)
+        {
+            var ex = exceptionFeature.Error;
+
+            // Hata loglama
+            logger.LogError(ex, "Global hata yakalandı!");
+
+            // Kullanıcıya JSON cevap
+            context.Response.StatusCode = 500;
+            context.Response.ContentType = "application/json";
+            var response = new { message = ex.Message, status = context.Response.StatusCode };
+            await context.Response.WriteAsync(JsonSerializer.Serialize(response));
+        }
+    });
+});
+
+// Test endpoint
+app.MapGet("/", () => throw new Exception("Test hatası"));
+
+app.Run();
+```
+
+</details>
+
+## 8.Yazılım Geliştirme Prensipleri
+
+<details>
+<summary><strong>SOLID prensipleri</strong></summary>
+
+## SOLID
+- İyi tasarlanmış nesne yönelimli yazılım için 5 temel prensibi ifade eder.
+
+## | S - Single Responsibility Principle (SRP) Tek Sorumluluk Prensibi: |
+- Bir sınıfın yalnızca bir işi yapması ve yalnızca bir sorumluluğu olması gerekir.
+
+<br>
+
+***Örnek:***
+```
+class InvoicePrinter {
+    public void Print(Invoice invoice) { /* yazdırma işlemi */ }
+}
+class InvoiceSaver {
+    public void Save(Invoice invoice) { /* kaydetme işlemi */ }
+}
+```
+
+
+## | O - Open/Closed Principle (OCP) Açık/Kapalı Prensibi: |
+- Kod geliştirmeye açık, değişikliğe kapalı olmalıdır. Yani mevcut kodu bozmadan yeni özellik ekleyebilmeliyiz.
+
+<br>
+
+***Örnek:***
+```
+csharp
+interface IShape { double Area(); }
+class Circle : IShape { public double Area() => Math.PI * radius * radius; }
+class Square : IShape { public double Area() => side * side; }
+``` |
+```
+
+
+## | L – Liskov Substitution Principle (LSP) / Liskov Yerine Geçme Prensibi : |
+- Türetilmiş sınıflar, temel sınıfın yerine geçebilir ve beklenmeyen hatalara yol açmamalıdır.
+
+<br>
+
+***Örnek:***
+ ```
+csharp
+class Bird { public virtual void Fly() {} }
+class Eagle : Bird { public override void Fly() { /* uçar */ } }
+``` |
+```
+
+
+## | I – Interface Segregation Principle (ISP) / Arayüz Ayrımı Prensibi : |
+- Küçük ve spesifik arayüzler kullan, istemci gereksiz metodlarla yüklenmesin.
+
+<br>
+
+***Örnek:***
+ ```
+csharp
+interface IPrinter { void Print(); }
+interface IScanner { void Scan(); }
+class MultiFunctionPrinter : IPrinter, IScanner { /* hepsini uygular */ }
+``` |
+```
+
+
+## |  D – Dependency Inversion Principle (DIP) / Bağımlılıkların Tersine Çevrilmesi : |
+- Yüksek seviyeli modüller, düşük seviyeli modüllere bağımlı olmamalı, her ikisi de arayüzlere bağımlı olmalı.
+
+<br>
+
+***Örnek:***
+ ```
+csharp
+interface IMessageSender { void Send(string msg); }
+class EmailSender : IMessageSender { public void Send(string msg) { /* mail gönder */ } }
+class Notification {
+    private IMessageSender _sender;
+    public Notification(IMessageSender sender) { _sender = sender; }
+}
+```
 
 
 
-    
 
 
 
 
 
+# Özet
+- **S:** Tek sorumluluk  
+- **O:** Açık-kapalı prensibi  
+- **L:** Alt sınıf, üst sınıfın yerine geçebilir  
+- **I:** Arayüzler küçük ve özelleşmiş olmalı  
+- **D:** Yüksek seviye modüller abstraction üzerinden düşük seviye modüllerle iletişim kurmalı
 
 
 
+</details>
+
+<details>
+<summary><strong>Design Patterns: Singleton, Repository, Factory</strong></summary>
+
+## 1️⃣ Singleton Pattern
+- Bir sınıftan yalnızca bir instance oluşturulmasını sağlamak ve global erişim noktası sunmak.
+
+```
+csharp
+public class Singleton
+{
+    private static Singleton _instance;
+    private static readonly object _lock = new object();
+
+    private Singleton() { }
+
+    public static Singleton Instance
+    {
+        get
+        {
+            lock (_lock)
+            {
+                if (_instance == null)
+                    _instance = new Singleton();
+                return _instance;
+            }
+        }
+    }
+
+    public void DoSomething()
+    {
+        Console.WriteLine("Singleton çalışıyor!");
+    }
+}
+```
 
 
-
-  
-
-
+## 2️⃣ Repository Pattern
+- Veritabanı işlemlerini soyutlamak, kodu daha test edilebilir ve yönetilebilir hâle getirmek.
 
 
+```
+public interface IProductRepository
+{
+    IEnumerable<Product> GetAll();
+    Product GetById(int id);
+    void Add(Product product);
+}
+
+public class ProductRepository : IProductRepository
+{
+    private readonly AppDbContext _context;
+    public ProductRepository(AppDbContext context)
+    {
+        _context = context;
+    }
+
+    public IEnumerable<Product> GetAll() => _context.Products.ToList();
+    public Product GetById(int id) => _context.Products.Find(id);
+    public void Add(Product product) => _context.Products.Add(product);
+}
+```
 
 
+## 3️⃣ Factory Pattern
+- Nesne oluşturmayı merkezi bir noktadan yönetmek, istemcinin hangi sınıfı oluşturacağını bilmesini
 
 
-  
-    
+```
+public interface IShape { void Draw(); }
+
+public class Circle : IShape
+{
+    public void Draw() => Console.WriteLine("Circle çizildi");
+}
+
+public class Square : IShape
+{
+    public void Draw() => Console.WriteLine("Square çizildi");
+}
+
+public class ShapeFactory
+{
+    public IShape GetShape(string shapeType)
+    {
+        return shapeType.ToLower() switch
+        {
+            "circle" => new Circle(),
+            "square" => new Square(),
+            _ => throw new ArgumentException("Bilinmeyen shape")
+        };
+    }
+}
+```
 
 
-
-
-
-
-
-  
 </details>
 
   
