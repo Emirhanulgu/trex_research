@@ -1274,6 +1274,358 @@ class Program
     }
 }
 ```
+</details>
+
+<details>
+<summary><strong>LİNQ örnekleri ve SQL açıklamaları </strong> </summary>
+
+## 1️⃣ LINQ Nedir?
+
+LINQ (Language Integrated Query), C# ve .NET içinde veri sorgulamak için kullanılan bir kütüphanedir.  
+Listeler, diziler, veritabanları ve XML üzerinde sorgular yazmayı kolaylaştırır.
+
+---
+
+## 2️⃣ LINQ Örnekleri (C#)
+
+```csharp
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+class Program {
+    static void Main() {
+        List<int> numbers = new List<int> { 1, 2, 3, 4, 5, 6 };
+
+        // 1. Where: 3'ten büyük sayıları filtrele
+        var greaterThanThree = numbers.Where(n => n > 3);
+        Console.WriteLine("Where Example: " + string.Join(",", greaterThanThree));
+
+        // 2. Select: Tüm sayıları 2 ile çarp
+        var multiplied = numbers.Select(n => n * 2);
+        Console.WriteLine("Select Example: " + string.Join(",", multiplied));
+
+        // 3. OrderBy: Sayıları küçükten büyüğe sırala
+        var ordered = numbers.OrderBy(n => n);
+        Console.WriteLine("OrderBy Example: " + string.Join(",", ordered));
+
+        // 4. FirstOrDefault: İlk çift sayıyı al
+        var firstEven = numbers.FirstOrDefault(n => n % 2 == 0);
+        Console.WriteLine("FirstOrDefault Example: " + firstEven);
+    }
+}
+```
+### Sql Nedir?
+- SQL (Structured Query Language), veritabanları üzerinde veri ekleme, silme, güncelleme ve sorgulama yapmak için kullanılan standart bir dildir.
+
+### Temel Sql Sorguları
+
+- 1. SELECT: Verileri çekmek için
+```SELECT * FROM Users;```  
+
+- 2. INSERT: Yeni veri eklemek için
+```INSERT INTO Users (Name, Age) VALUES ('Emir', 16);```
+
+- 3. UPDATE: Var olan veriyi güncellemek için
+```UPDATE Users SET Age = 17 WHERE Name = 'Emir';```
+
+- 4. DELETE: Veri silmek için
+```DELETE FROM Users WHERE Name = 'Emir';```
+
+</details>
+
+<details>
+<summary><strong>Code-First ve Database-First yaklaşımı nedir?</strong></summary>
+
+### Code-First nedir?
+
+Önce uygulamanın model sınıflarını (entity class) kod tarafında oluşturursunuz. EF bu sınıfları temel alarak veritabanını kendisi üretir ve migration ile güncelleyebilirsiniz. Veritabanı tasarımını geliştirici kontrol eder.
+Genelde yeni projelerde veya veritabanı tasarımını sıfırdan yapmak istediğiniz durumlarda tercih edilir.
+
+### Database-First nedir?
+
+Önceden hazırlanmış bir veritabanınız vardır. EF bu veritabanındaki tabloları, alanları ve ilişkileri otomatik olarak class’lara dönüştürür (reverse engineering). Kod tarafında model oluşturma ihtiyacı azalır.
+Mevcut bir veritabanını kullanan projelerde veya veritabanı tasarımının DBA tarafından yapıldığı durumlarda tercih edilir.
+
+### Code-First vs DB-First karşılaştırması
+
+| Özellik               | Code-First                          | Database-First                     |
+|-----------------------|------------------------------------|-----------------------------------|
+| Başlangıç Noktası      | Kod tarafında modeller oluşturulur | Mevcut veritabanı kullanılır       |
+| Veritabanı Oluşturma   | EF modellerden veritabanı üretir   | EF veritabanından modeller üretir |
+| Değişiklik Yönetimi    | Migration ile yönetilir            | DB’de manuel değişiklik gerekir    |
+| Esneklik               | Geliştiriciye daha fazla esneklik  | Veritabanı tasarımına bağımlıdır   |
+| Kullanım Senaryosu     | Yeni projelerde                   | Mevcut veritabanı olan projelerde |
+ 
+</details>
+
+
+<details>
+<summary><strong>Temel SQL sorguları: SELECT, INSERT, UPDATE, DELETE</strong></summary>
+  
+### Temel SQL Sorguları:
+
+### 1️ SELECT
+- Veritabanından veri çekmek için kullanılır.
+
+```sql
+-- Tüm kullanıcıları çek
+SELECT * FROM Users;
+
+-- Sadece isim ve yaş alanlarını çek
+SELECT Name, Age FROM Users;
+
+-- Belirli koşula göre çek
+SELECT * FROM Users WHERE Age > 18;
+```
+### 2 INSERT
+- Veritabanına yeni veri eklemek için kullanılır.
+```
+-- Yeni kullanıcı ekle
+INSERT INTO Users (Name, Age) VALUES ('Emir', 16);
+
+-- Birden fazla veri ekleme
+INSERT INTO Users (Name, Age) VALUES 
+('Ali', 20),
+('Ayşe', 22);
+```
+### 3 UPDATE
+- Var olan veriyi güncellemek için kullanılır.
+```
+-- Kullanıcının yaşını güncelle
+UPDATE Users
+SET Age = 17
+WHERE Name = 'Emir';
+
+-- Tüm kullanıcıların yaşını +1 artır
+UPDATE Users
+SET Age = Age + 1;
+```
+### 4 DELETE
+- Veritabanından veri silmek için kullanılır.
+```
+-- Belirli kullanıcıyı sil
+DELETE FROM Users
+WHERE Name = 'Emir';
+
+-- Tüm kullanıcıları sil (dikkat!)
+DELETE FROM Users;
+
+```
+
+  
+</details>
+
+
+## 6. Güvenlik ve Performans
+<details>
+
+  <summary><strong>Authentication vs Authorization nedir?</strong></summary>
+
+  ### Authentication vs Authorization
+
+| Özellik                  | Authentication                     | Authorization                       |
+|---------------------------|-----------------------------------|------------------------------------|
+| Tanım                     | Kullanıcının kimliğini doğrulama   | Kullanıcının yetkilerini kontrol etme |
+| Soru                     | "Sen gerçekten bu kullanıcı mısın?" | "Bu kullanıcı ne yapabilir?"        |
+| Ne zaman gerçekleşir      | Login sırasında                    | Login sonrası, erişim kontrolünde   |
+| Veri kontrolü             | Kimlik bilgileri (şifre, token)   | Rol, izinler, yetkiler             |
+| Örnek                    | Kullanıcı adı + şifre ile giriş    | Admin paneline erişim kontrolü     |
+
+  
+</details>
+
+<details>
+  <summary><strong>JWT (JSON Web Token) nedir, nasıl çalışır?</strong></summary>
+
+  ## JWT (JSON Web Token) Nedir ve Nasıl Çalışır?
+
+  - JWT, web uygulamalarında kullanıcı kimliğini doğrulamak ve veri taşımak için kullanılan, **JSON tabanlı, URL-safe (güvenli)** bir token formatıdır.  
+    Özellikle **stateless authentication** (sunucuda oturum saklamadan doğrulama) için kullanılır.
+---
+# JWT Temel Yapısı:
+
+1. **Header (Başlık)**
+- Token türü ve imzalama algoritması belirtilir.
+
+   ```
+   json
+   {
+     "alg": "HS256",
+     "typ": "JWT"
+   }
+   ```
+ 2. **Payload (Yük)**
+ - Taşınacak bilgiler burada yer alır. Kullanıcı bilgileri, roller ve token geçerlilik süresi (expiration) bulunabilir.
+ ```
+{
+  "userId": 123,
+  "username": "emir",
+  "exp": 1700000000
+}
+ ```
+3. **Signature (İmza)**
+
+- Header ve Payload base64 ile encode edilip, gizli anahtar ile imzalanır. Token’ın değiştirilmediğini garanti eder.
+
+```
+HMACSHA256(base64UrlEncode(header) + "." + base64UrlEncode(payload), secret)
+```
+</details>
+
+<details>
+  <summary><strong>OAuth, OAuth2.0, OpenIddict, OpenID nedir? Aralarındaki ilişki</strong></summary>
+
+  # OAuth, OAuth2.0, OpenID, OpenIddict ve Aralarındaki İlişki
+
+| Teknoloji / Protokol | Açıklama | Örnek Kullanım / Notlar |
+|----------------------|----------|------------------------|
+| **OAuth** | Açık bir yetkilendirme protokolüdür. Kullanıcı şifresini paylaşmadan, üçüncü taraf uygulamalara belirli kaynaklara erişim izni verir. | Örnek: Bir web uygulaması kullanıcının Google Drive dosyalarına erişim istiyor, ama kullanıcı şifresini paylaşmak zorunda değil. |
+| **OAuth 2.0** | OAuth’un geliştirilmiş, modern versiyonudur. Daha güvenli ve esnek token bazlı yetkilendirme sağlar. Access token, refresh token gibi kavramları içerir. | Örnek: API erişimleri için Bearer Token kullanımı. Web uygulamaları, mobil uygulamalar veya servisler OAuth 2.0 ile kimlik doğrulama ve yetkilendirme yapar. |
+| **OpenID** | Kimlik doğrulama (Authentication) protokolüdür. Kullanıcının kimliğini doğrulamak için kullanılır. OAuth ile birlikte çalışabilir. | Örnek: “Login with Google” veya “Login with Facebook” butonları OpenID Connect üzerinden kimlik doğrulama yapar. |
+| **OpenID Connect (OIDC)** | OpenID + OAuth 2.0 birleşimi. Kimlik doğrulama ve yetkilendirme bir arada yapılabilir. | Örnek: Web uygulaması kullanıcıyı doğrulamak (ID Token) ve API erişim yetkisi vermek (Access Token) için OIDC kullanır. |
+| **OpenIddict** | ASP.NET Core üzerinde OpenID Connect ve OAuth2.0 server implementasyonu sağlayan kütüphanedir. Kendi auth server’ını kolayca oluşturmanı sağlar. | Örnek: Kendi web API’n için OpenIddict kullanarak OAuth2.0 token endpoint’leri ve kullanıcı doğrulama mekanizması oluşturabilirsin. |
+
+---
+</details>
+<details>
+<summary><strong>Performans artımı için ne yapılabilir? (AsNoTracking, IAsyncEnumerable, caching, profiling, redis)</strong></summary>
+
+<br>
+
+- **AsNoTracking:** Sadece okuma, değişiklik takip yok → performans artışı. 
+- **IAsyncEnumerable:** Büyük veri setlerinde bellek ve UI optimizasyonu.
+- **Caching / Redis:** Sık kullanılan veri için hızlı erişim, DB yükünü azaltır.
+- **Profiling:** Yavaş noktaları tespit edip optimize etmek.
+-  **Redis** Dağıtık cache çözümü. Veritabanı yükünü azaltır, hızlı veri erişimi sağlar.
+
+</details>
+
+<details>
+<summary><strong>Performans için önerilen en az 3 teknik ve açıklamaları</strong></summary>
+
+# Performans Artışı İçin Önerilen Teknikler
+
+
+***AsNoTracking***
+- Veri sadece okunacaksa, değişiklik takibini kapatır. Bellek ve CPU kullanımını azaltır.
+
+***IAsyncEnumerable***
+- Büyük veri setlerini asenkron ve lazy olarak okumayı sağlar. Bellek tüketimini azaltır ve UI thread'i bloklamaz.
+
+***Caching***
+- Sık kullanılan verileri cache’de tutarak veritabanı sorgularını azaltır ve hızlı veri erişimi sağlar.
+
+
+    
+</details>
+
+
+
+## 7. Logging ve Hata Yönetimi
+
+<details>
+  
+<summary><strong>Neden loglama yapılır? Log seviyesi nedir?</strong></summary>
+
+## Neden Loglama Yapılır?
+- Uygulama çalışırken oluşan olayları kaydetmek için.  
+- Hata ayıklama (debugging) ve sorun çözme amacıyla.  
+- Performans takibi ve kullanıcı davranışlarını izlemek için.  
+- Güvenlik ve denetim (audit) süreçlerinde kayıt tutmak için.
+
+---
+
+## Log Seviyesi Nedir?
+
+- Log seviyesi, log mesajlarının önem derecesini belirler. Farklı seviyeler, hangi olayların loglanacağını kontrol etmeye yarar.  
+
+| Seviye       | Açıklama |
+|--------------|----------|
+| **Trace**    | En ayrıntılı loglar. Genellikle uygulama akışını detaylı izlemek için kullanılır. |
+| **Debug**    | Hata ayıklama ve geliştirme sürecinde kullanılır. Detaylı bilgi verir. |
+| **Information / Info** | Normal operasyonel olaylar. Örn: Kullanıcı giriş yaptı. |
+| **Warning**  | Uyarılar. Hata değil ama dikkat gerektiren durumlar. |
+| **Error**    | Hatalar. Uygulamanın bazı bölümlerinde sorun oluştuğunu gösterir. |
+| **Critical / Fatal** | Kritik hatalar. Uygulamanın çökmesine veya ciddi sorunlara yol açan durumlar. |
+
+---
+
+## Örnek (C# .NET Core)
+
+```
+csharp
+using Microsoft.Extensions.Logging;
+
+class Program
+{
+    static void Main()
+    {
+        using var loggerFactory = LoggerFactory.Create(builder =>
+        {
+            builder.AddConsole();
+        });
+
+        ILogger logger = loggerFactory.CreateLogger<Program>();
+
+        logger.LogTrace("Trace log: detaylı bilgi");
+        logger.LogDebug("Debug log: hata ayıklama bilgisi");
+        logger.LogInformation("Info log: uygulama çalışıyor");
+        logger.LogWarning("Warning log: dikkat gerektiren durum");
+        logger.LogError("Error log: hata oluştu");
+        logger.LogCritical("Critical log: kritik hata!");
+    }
+}
+```
+</details>
+
+<details>
+
+  <summary><strong>ASP.NET Core'da logging altyapısı</strong></summary>
+
+  
+
+  
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+    
+
+
+
+
+
+
+
+  
+</details>
+
+  
+
+
+
 
 
 
