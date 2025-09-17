@@ -1907,92 +1907,114 @@ public class ShapeFactory
 
 
 </details>
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<details>
+  <summary><strong>Clean Code nedir, neden önemlidir?</strong></summary>
+
+  # Clean Code (Temiz Kod) - Nedir ve Neden Önemlidir?
+
+| Konsept                | Açıklama | Örnek |
+|------------------------|----------|-------|
+| **Clean Code Nedir?**  | Kolay okunabilir, anlaşılabilir ve sürdürülebilir kod yazma prensibidir. | Kodun kendisi ne yaptığını anlatmalı, ekstra yorum gerektirmemeli |
+| **Okunabilirlik**      | Kod başkaları veya gelecekteki sen tarafından kolayca anlaşılmalı. | `DateTime today = DateTime.Now; DateTime tomorrow = today.AddDays(1);` |
+| **Anlaşılabilirlik**   | Fonksiyonlar ve sınıflar tek bir sorumluluğa sahip olmalı (SRP). | `void SaveToDatabase() { } void GenerateReport() { }` |
+| **Sürdürülebilirlik**  | Kod değişikliğe açık olmalı, refactor kolay olmalı. | Küçük fonksiyonlar, modüler tasarım, anlamlı isimler |
+| **Neden Önemli?**     | Hataları azaltır, takım çalışmasını kolaylaştırır, bakımı ve geliştirmeyi hızlandırır. | Temiz kod = daha az bug + hızlı geliştirme + kolay test |
+
+<hr>
+
+
+```
+using System;
+
+namespace CleanCodeExamples
+{
+
+    // Örnek sınıf
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            
+            // Örnek 1: Anlamlı değişken ve fonksiyon isimleri
+            
+            
+            // Kötü
+            int d = DateTime.Now.Day;
+            P();
+
+            // Temiz
+            int currentDay = DateTime.Now.Day;
+            PrintInvoice();
+
+            
+            // Örnek 2: Tek sorumluluk (SRP) - Fonksiyonları bölmek
+            
+            
+            Order order = new Order { Id = 1, Name = "Laptop" };
+
+            // Kötü
+            ProcessOrder(order);
+
+            // Temiz
+            SaveOrder(order);
+            SendOrderEmail(order);
+            GenerateOrderReport(order);
+        }
+
+        // Kötü örnek fonksiyon
+        static void P()
+        {
+            Console.WriteLine("İşlem yapılıyor");
+        }
+
+        // Temiz örnek fonksiyon
+        static void PrintInvoice()
+        {
+            Console.WriteLine("Fatura yazdırılıyor");
+        }
+
+        // Kötü örnek: tek fonksiyon birden fazla sorumluluk
+        static void ProcessOrder(Order order)
+        {
+            SaveToDatabase(order);
+            SendEmail(order);
+            GenerateReport(order);
+        }
+
+        // Temiz örnek fonksiyonlar
+        static void SaveOrder(Order order) { Console.WriteLine("DB kaydedildi"); }
+        static void SendOrderEmail(Order order) { Console.WriteLine("Email gönderildi"); }
+        static void GenerateOrderReport(Order order) { Console.WriteLine("Rapor oluşturuldu"); }
+
+        // Yardımcı fonksiyonlar (kötü)
+        static void SaveToDatabase(Order order) { }
+        static void SendEmail(Order order) { }
+        static void GenerateReport(Order order) { }
+    }
+
+    class Order
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+    }
+}
+```
+
+
+
+</details>
+
+<details>
+
+<summary><strong>Hexagonal Architecture (Ports & Adapters)</strong></summary>
+
+| Konsept                | Açıklama | Örnek / Notlar |
+|------------------------|----------|----------------|
+| **Amaç**               | Uygulamanın çekirdeğini (core) dış bağımlılıklardan izole etmek. | Böylece domain logic bağımsız kalır, test ve bakım kolaylaşır. |
+| **Core / Domain**      | İş mantığının olduğu katman. Uygulamanın kalbi. | `OrderService`, `InvoiceCalculator` gibi sınıflar |
+| **Ports (Giriş Noktaları)** | Core’un dış dünya ile iletişim noktaları. Abstraction sağlar. | Interface’ler: `IOrderRepository`, `IPaymentGateway` |
+| **Adapters (Bağlayıcılar)** | Port’ları gerçek dünyaya bağlayan implementasyonlar. | `SqlOrderRepository`, `StripePaymentAdapter` |
+| **Avantajları**       | - Bağımlılık azaltılır <br> - Test edilebilirlik artar <br> - Core katmanı değişmez | Core logic’i değiştirmeden veri tabanı veya servis değiştirilebilir |
+| **Örnek Akış**        | 1. Adapter → Port → Core <br> 2. Core → Port → Adapter | `Controller → IOrderService → OrderService → IOrderRepository → SqlOrderRepository` |
+
+</details>
