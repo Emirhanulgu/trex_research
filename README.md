@@ -20,14 +20,35 @@
 <details>
 <summary><strong>Temel Git komutları: init, clone, add, commit, push, pull, branch, merge<strong></summary>
 
-* `git init` → Yeni bir Git deposu başlatır. ***Örnek*** = `O klasörde .git adında gizli bir klasör oluşur → bu klasör Git’in tüm geçmişi, ayarları ve sürüm kontrol bilgilerini saklar.`
-* `git clone` → Var olan bir depoyu bilgisayarına indirir. ***Örnek*** = https://github.com/kullanici/proje.git 
-* `git add` → Dosyaları commit için hazırlar.***Örnek*** = `git add index.html`
-* `git commit` → Yapılan değişiklikleri kaydeder. ***Örnek*** = `git commit -m "Ana sayfa güncellendi`
-* `git push` → Kaydedilen değişiklikleri uzak depoya gönderir. ***Örnek*** = `git push origin main`
-* `git pull` → Uzak depodaki son değişiklikleri indirir. ***Örnek*** = `git pull origin main`
-* `git branch` → Yeni bir dal (branch) oluşturur. ***Örnek*** = `git branch yeni-ozellik`
-* `git merge` → Farklı dalları birleştirir. ***Örnek*** = `git merge yeni-ozellik`
+* `git init` → Yeni bir Git deposu başlatır. <br>***Örnek*** = <br>`O klasörde .git adında gizli bir klasör oluşur → bu klasör Git’in tüm geçmişi, ayarları ve sürüm kontrol bilgilerini saklar.`
+
+<br>
+
+* `git clone` → Var olan bir depoyu bilgisayarına indirir. <br>***Örnek*** = https://github.com/kullanici/proje.git
+
+<br>
+
+* `git add` → Dosyaları commit için hazırlar.<br>***Örnek*** = `git add index.html`
+
+<br>
+
+* `git commit` → Yapılan değişiklikleri kaydeder. <br>***Örnek*** = `git commit -m "Ana sayfa güncellendi`
+
+<br>
+
+* `git push` → Kaydedilen değişiklikleri uzak depoya gönderir. <br>***Örnek*** = `git push origin main`
+
+<br>
+
+* `git pull` → Uzak depodaki son değişiklikleri indirir.<br> ***Örnek*** = `git pull origin main`
+
+<br>
+
+* `git branch` → Yeni bir dal (branch) oluşturur. <br>***Örnek*** = `git branch yeni-ozellik`
+
+<br>
+
+* `git merge` → Farklı dalları birleştirir. <br>***Örnek*** = `git merge yeni-ozellik`
 
 </details>
 
