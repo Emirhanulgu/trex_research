@@ -2096,3 +2096,26 @@ namespace CleanCodeExamples
 | **Örnek Akış**        | 1. Adapter → Port → Core <br> 2. Core → Port → Adapter | `Controller → IOrderService → OrderService → IOrderRepository → SqlOrderRepository` |
 
 </details>
+
+
+<br>
+<br> 
+<br> 
+<br> 
+
+
+| trex Dijital Akıllı Üretim Sistemleri A.Ş |
+|--------|
+| ![unnamed](https://github.com/user-attachments/assets/e85e019d-aa1e-42fb-8b3c-ef806ffb7c87) | 
+| <img width="600" height="350" alt="indir" src="https://github.com/user-attachments/assets/fcbc7645-095f-40be-8eed-f7a8e6b843c2" /> |
+
+
+
+
+
+
+
+
+
+
+
