@@ -265,6 +265,7 @@ jobs:
 </details>
 
 
+
  <details>     
  
  <summary>Ek Maddeler</summary>
@@ -339,6 +340,8 @@ Kanban → İş akışı panosu (To Do → Doing → Done).
 
 
  </details>
+ 
+<br>
 
  ## 2. .Net Ekosistemi🌁
  <details>
@@ -429,6 +432,9 @@ print("Dosya okundu:", data)
 - Uzun süren işlemler(dosya okuma API çağrısı tüm süreci bloke eder).
 
 
+<br>
+
+
 ## 👨‍💻Asenkron Programlama Nedir:
 
 - Asenkron programlama, işlemlerin eşzamanlı olarak yürütülmesine izin veren bir modeldir. Bir görev tamamlanana kadar diğerleri beklemek zorunda değildir; uzun süren işlemler arka planda devam ederken program diğer işlere geçebilir.
@@ -508,30 +514,35 @@ public override string ToString() => $"Name: {Name}";
   
 <br>
 
-**Backend Nedir?**
-  - Backend, bir uygulamanın arka planda çalışan kısmıdır. Kullanıcının doğrudan görmediği, ama uygulamanın çalışmasını sağlayan veritabanı yönetimi, iş mantığı, API geliştirme, kimlik doğrulama gibi süreçleri içerir.
+## Backend Nedir?
+ - Backend, bir uygulamanın arka planda çalışan kısmıdır. Kullanıcının doğrudan görmediği, ama uygulamanın çalışmasını sağlayan veritabanı yönetimi, iş mantığı, API geliştirme, kimlik doğrulama gibi süreçleri içerir.
 
 **Örnek:**
   - Bir e-ticaret sitesinde ürün siparişi verdiğinde, siparişin veritabanına kaydedilmesi, stok kontrolü yapılması ve ödeme işlemlerinin gerçekleşmesi backend tarafından yönetilir.
 
 
-<hr>
+<br>
 
-**Frontend Nedir?**
-  - Frontend, kullanıcının doğrudan etkileşimde bulunduğu kısımdır. Web sayfasının tasarımı, butonlar, formlar, yazılar, görseller ve kullanıcı deneyimi (UI/UX) frontend tarafından sağlanır.
+## Frontend Nedir?
+- Frontend, kullanıcının doğrudan etkileşimde bulunduğu kısımdır. Web sayfasının tasarımı, butonlar, formlar, yazılar, görseller ve kullanıcı deneyimi (UI/UX) frontend tarafından sağlanır.
 
 
  **Örnek:**
   - Aynı e-ticaret sitesinde ürünlerin listelenmesi, sepet butonu, ödeme formu ve sipariş onay ekranı frontend’in işidir.
 
-**🔄 Backend ve Frontend Farkları**
+<br>
+
+
+## 🔄 Backend ve Frontend Farkları
 
 | Özellik            | Frontend                                   | Backend                                  |
 |--------------------|--------------------------------------------|------------------------------------------|
 | Kullanıcı ile İlişki | Doğrudan kullanıcının gördüğü arayüz      | Kullanıcının görmediği iş mantığı         |
 | Teknolojiler       | HTML, CSS, JavaScript, React, Angular      | C#, Java, Python, Node.js, SQL            |
-| Görev              | Görsellik, kullanıcı etkileşimi            | Veri işleme, API, güvenlik, mantık        |
+| Görev              | Görsellik, kullanıcı etkileşimi            | Veri işleme, API, güvenlik, ma<ntık        |
 | Örnek              | “Sepete Ekle” butonunun görünümü           | “Sepete Ekle” isteğinin veritabanına kaydı |
+
+<br>
 
 </details>
 
@@ -560,7 +571,7 @@ public override string ToString() => $"Name: {Name}";
   - Backend ile birlikte çalışarak veri tabanından veri çekip kullanıcıya sunabilir.
   - Güvenlik, performans ve erişilebilirlik açısından kritik rol oynar.
 
-<hr>
+<br>
 
 ## API Nedir?
   - API (Application Programming Interface / Uygulama Programlama Arayüzü), iki yazılımın birbiriyle iletişim kurmasını sağlayan bir köprüdür.
@@ -583,6 +594,8 @@ public override string ToString() => $"Name: {Name}";
   - Frontend ve backend arasındaki iletişimi sağlar.
   - Modern yazılım geliştirmede veri paylaşımı ve entegrasyon için çok önemlidir.
 
+<br>
+
 ## API Türleri
 
 1. **REST API**  
@@ -603,7 +616,9 @@ public override string ToString() => $"Name: {Name}";
    - Sürekli bağlantı sağlar, gerçek zamanlı veri iletimi için kullanılır.  
    - Örn: Chat uygulamaları, canlı bildirimler.
   
+<br>
 
+  
 ## HTTP Nedir?
 
 **HTTP (HyperText Transfer Protocol / HiperMetin Transfer Protokolü)**, web tarayıcıları ile web sunucuları arasında **veri alışverişini sağlayan protokoldür**.  
@@ -666,6 +681,9 @@ Content-Type: application/json
 DELETE /users/2 HTTP/1.1
 Host: www.ornekapi.com
 ```
+
+<br>
+
 </details>
 
 
@@ -701,7 +719,7 @@ Host: www.ornekapi.com
 - İnsan tarafından okunabilir, bilgisayar tarafından kolay işlenebilir.
 - Web uygulamaları, API’ler ve sunucular arasında veri alışverişi yapmak için sık kullanılır.
 
-## Örnek Json:
+**Örnek Json:**
 ```
 {
   "id": 1,
@@ -711,10 +729,12 @@ Host: www.ornekapi.com
   "hobbies": ["yazılım", "futbol", "müzik"]
 }
 ```
-## Kullanım Alanları
+**Kullanım Alanları**
 - Web API’leri ile veri göndermek ve almak
 - JavaScript uygulamalarında veri depolamak
 - Sunucular ve istemciler arasında iletişim
+
+<br
 
 </details>
 
@@ -757,6 +777,8 @@ Host: www.ornekapi.com
 ---
 
 </details>
+
+<br> 
 
 ## 4.ASP.NET 🛜
 
@@ -1106,8 +1128,9 @@ Amaç: Uygulamayı bağımsız, esnek ve kolay test edilebilir hale getirmektir.
  
 </details>
 
+<br> 
  
-## 5.VeriTabanı ve ORM
+## 5.VeriTabanı ve ORM🗃️
 
 <details>
 <summary><strong>SQL nedir?<strong></summary>
@@ -1133,6 +1156,7 @@ DELETE FROM Customers WHERE Name = 'Eren';
 ```
 
 </details>
+
 
 <details>
 <summary><strong>İlişkisel ve ilişkisel olmayan veri tabanları arasındaki farklar<strong></summary>
@@ -1467,8 +1491,9 @@ DELETE FROM Users;
   
 </details>
 
+<br> 
 
-## 6. Güvenlik ve Performans
+## 6. Güvenlik ve Performans🏃‍♂️‍➡️
 <details>
 
   <summary><strong>Authentication vs Authorization nedir?</strong></summary>
@@ -1571,9 +1596,9 @@ HMACSHA256(base64UrlEncode(header) + "." + base64UrlEncode(payload), secret)
     
 </details>
 
+<br> 
 
-
-## 7. Logging ve Hata Yönetimi
+## 7. Logging ve Hata Yönetimi⛔
 
 <details>
   
@@ -1760,7 +1785,9 @@ app.Run();
 
 </details>
 
-## 8.Yazılım Geliştirme Prensipleri
+<br> 
+
+## 8.Yazılım Geliştirme Prensipleri✍️
 
 <details>
 <summary><strong>SOLID prensipleri</strong></summary>
