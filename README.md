@@ -3,24 +3,28 @@
 
 <details>
 <summary><strong>Git nedir? GitHub nedir?<strong></summary>
-
+  
+## Git Nedir?
 * Git, yazılım geliştirmede kod değişikliklerini kaydeden ve yöneten bir versiyon kontrol sistemidir.  
 * Kod üzerinde yapılan her değişiklik bir sürüm olarak saklanır.  
 * Aynı proje üzerinde birden fazla kişinin çakışmadan çalışmasına olanak sağlar.  
 * Geçmişte yapılan değişikliklere geri dönüp bakılabilir.  
 
----
 
+## GitHub Nedir?
 * GitHub ise Git altyapısını kullanarak projelerin internet üzerinde tutulduğu bulut tabanlı bir platformdur.  
 * Ekip çalışmasını kolaylaştırmak için issue (sorun takibi), pull request (kod katkısı), GitHub Actions (otomasyon) gibi araçlar sunar.  
-* Açık kaynak projelerin paylaşımı için en çok kullanılan platformlardan biridir.  
+* Açık kaynak projelerin paylaşımı için en çok kullanılan platformlardan biridir.
+
+<br> 
 
 </details>
 
 <details>
 <summary><strong>Temel Git komutları: init, clone, add, commit, push, pull, branch, merge<strong></summary>
 
-* `git init` → Yeni bir Git deposu başlatır. <br>***Örnek*** = <br>`O klasörde .git adında gizli bir klasör oluşur → bu klasör Git’in tüm geçmişi, ayarları ve sürüm kontrol bilgilerini saklar.`
+* `git init` → Yeni bir Git deposu başlatır.<br>
+***Örnek*** = `O klasörde .git adında gizli bir klasör oluşur → bu klasör Git’in tüm geçmişi, ayarları ve sürüm kontrol bilgilerini saklar.`
 
 <br>
 
@@ -50,62 +54,68 @@
 
 * `git merge` → Farklı dalları birleştirir. <br>***Örnek*** = `git merge yeni-ozellik`
 
+
+<br>
+
 </details>
 
 <details>
 <summary><strong>Merge conflict nedir? Nasıl Çözülür?<strong></summary>
-  <br>
- Merge conflict, Git’te iki farklı dalda (branch) aynı dosyanın aynı kısmında farklı değişiklikler yapılınca ortaya çıkan çakışmadır.
+  
+  
+## Merge conflict
+- Git’te iki farklı dalda (branch) aynı dosyanın aynı kısmında farklı değişiklikler yapılınca ortaya çıkan çakışmadır.
+- Git, hangi değişikliğin geçerli olacağına otomatik karar veremez.
+- Bu yüzden kullanıcıya sorar: “Hangi değişikliği istiyorsun?”
 
-Git, hangi değişikliğin geçerli olacağına otomatik karar veremez.
-
-Bu yüzden kullanıcıya sorar: “Hangi değişikliği istiyorsun?”
-
-Kısaca:
+***Kısaca:***
 
 “İki kişi aynı yerde farklı şeyler yazdı, Git karıştı, sen karar ver!”
 <br>
 
 ---
 
- <br>
- Merge Conflict Nasıl Çözülür?
+ 
+ ## Merge Conflict Nasıl Çözülür?
 
-1.Çatışan dosyayı açmak: Git, hangi dosyada çatışma olduğunu gösterir.
+1. Çatışan dosyayı açmak: Git, hangi dosyada çatışma olduğunu gösterir.
 
-2.Değişiklikleri incelemek: Hangi değişikliğin kalacağını veya iki değişikliği birleştirip bir çözüm oluşturacağını seçersin.
+2. Değişiklikleri incelemek: Hangi değişikliğin kalacağını veya iki değişikliği birleştirip bir çözüm oluşturacağını seçersin.
 
-3.Değişikliği kaydetmek ve bildir: Çatışmayı çözdükten sonra Git’e bu dosyanın artık hazır olduğunu bildirmek için commit yapılır.
+3. Değişikliği kaydetmek ve bildir: Çatışmayı çözdükten sonra Git’e bu dosyanın artık hazır olduğunu bildirmek için commit yapılır.
 
----
+<br>
 
 </details>
 
 
 <details>
 <summary>CI/CD Nedir? AzureDevOps, GitHub Actions ile pipeline örnekleri</summary>
-   <br>
-CI/CD, yazılım geliştirme sürecinde otomasyon ve sürekli teslim sağlayan bir yaklaşımdır. İngilizce açılımı:
+  
+## CI/CD
 
- <br>
+- Yazılım geliştirme sürecinde otomasyon ve sürekli teslim sağlayan bir yaklaşımdır.
 
-***CI (Continuous Integration) → Sürekli Entegrasyon***
 
-***CD (Continuous Delivery / Continuous Deployment) → Sürekli Teslim / Sürekli Yayın***
+<br> İngilizce Açılımı:
 
-Kısaca, yazılımın daha hızlı, güvenli ve hatasız geliştirilmesini sağlayan yöntemdir.
+- ***CI (Continuous Integration) → Sürekli Entegrasyon***
+
+- ***CD (Continuous Delivery / Continuous Deployment) → Sürekli Teslim / Sürekli Yayın***
+
+***Kısaca:***
+
+- Yazılımın daha hızlı, güvenli ve hatasız geliştirilmesini sağlayan yöntemdir.
+  
 <br>
-<br>
 
----
+##  CI – Continuous Integration (Sürekli Entegrasyon)
 
-***CI – Continuous Integration (Sürekli Entegrasyon)***
+- Geliştiriciler, yaptıkları değişiklikleri sıklıkla ortak koda (main branch) entegre eder.
 
-Geliştiriciler, yaptıkları değişiklikleri sıklıkla ortak koda (main branch) entegre eder.
+- Her entegrasyon otomatik olarak test edilir, böylece hatalar erken yakalanır.
 
-Her entegrasyon otomatik olarak test edilir, böylece hatalar erken yakalanır.
-
-Amaç: Kodun her zaman çalışır durumda olmasını sağlamak.
+- Amaç: Kodun her zaman çalışır durumda olmasını sağlamak.
 
 Örnek:
 Birden fazla kişi aynı projede çalışıyor. Herkes kendi değişikliklerini sık sık ana koda ekliyor ve sistem otomatik olarak test ediyor. Böylece büyük bir hata oluşmadan önlem alınabiliyor.
@@ -113,30 +123,28 @@ Birden fazla kişi aynı projede çalışıyor. Herkes kendi değişikliklerini 
 <br>
 
 
----
 
-***CD – Continuous Delivery / Deployment (Sürekli Teslim / Yayın)***
+## CD – Continuous Delivery / Deployment (Sürekli Teslim / Yayın)
 
-Continuous Delivery (Sürekli Teslim): Kod değişiklikleri testlerden geçtikten sonra her an yayına alınabilir hâle getirilir. Ama yayın manuel olabilir.
+- Continuous Delivery (Sürekli Teslim): Kod değişiklikleri testlerden geçtikten sonra her an yayına alınabilir hâle getirilir. Ama yayın manuel olabilir.
 
-Continuous Deployment (Sürekli Yayın): Kod değişiklikleri testleri geçtikten sonra otomatik olarak canlıya çıkar.
+- Continuous Deployment (Sürekli Yayın): Kod değişiklikleri testleri geçtikten sonra otomatik olarak canlıya çıkar.
 
 Örnek:
 Testleri geçen bir özellik, insan müdahalesi olmadan direkt kullanıcıya sunulabilir.
 <br>
 <br>
 
----
 
-***CI/CD’nin Avantajları***
+## CI/CD’nin Avantajları
 
-1.Hızlı geri bildirim: Hatalar erken bulunur.
+1. Hızlı geri bildirim: Hatalar erken bulunur.
 
-2.Daha güvenli kod: Testler sürekli çalışır.
+2. Daha güvenli kod: Testler sürekli çalışır.
 
-3.Hızlı teslim: Yeni özellikler ve düzeltmeler kullanıcıya çabuk ulaşır.
+3. Hızlı teslim: Yeni özellikler ve düzeltmeler kullanıcıya çabuk ulaşır.
 
-4.İnsan hatasını azaltır: Otomasyon sayesinde manuel hatalar azalır.
+4. İnsan hatasını azaltır: Otomasyon sayesinde manuel hatalar azalır.
 <br>
 
 
@@ -263,7 +271,7 @@ jobs:
  
 <br>  
 
-**SDLC Aşamaları (Yazılım Geliştirme Yaşam Döngüsü)**
+## SDLC Aşamaları (Yazılım Geliştirme Yaşam Döngüsü)
 
 **Planlama (Planning)**
 
@@ -271,11 +279,15 @@ jobs:
 
 * Zaman, maliyet ve kaynak planlaması yapılır.
 
+<br>
+
 **Gereksinim Analizi (Requirement Analysis)**
 
 * Kullanıcı ihtiyaçları toplanır.
 
 * Fonksiyonel (ne yapacak) ve fonksiyonel olmayan (performans, güvenlik vb.) gereksinimler netleştirilir.
+
+<br>
 
 **Tasarım (Design)**
 
@@ -283,17 +295,23 @@ jobs:
 
 * Yüksek seviye (mimari) ve düşük seviye (detaylı) tasarım hazırlanır.
 
+<br>
+
 **Geliştirme (Implementation / Development)**
 
 * Kodlama aşaması başlar.
 
 * Takım üyeleri belirlenen tasarıma göre yazılımı geliştirir.
 
+<br>
+
 **Test (Testing / Verification)**
 
 * Yazılım hatalara karşı test edilir.
 
-* Birim testleri, entegrasyon testleri, sistem testleri ve kullanıcı kabul testleri yapılır.
+* Birim testleri, entegrasyon testleri, sistem testleri ve kullanıcı kabul testleri yapılır
+
+<br>
 
 **Dağıtım (Deployment)**
 
@@ -301,11 +319,15 @@ jobs:
 
 * Kullanıcıların erişimine açılır.
 
+<br>
+
 **Bakım (Maintenance / Support)**
 
 * Hatalar düzeltilir, güncellemeler yapılır.
 
 * Yeni ihtiyaçlara göre sistem geliştirilir.
+
+<br>
   
 **Metodolojiler** Ⓜ️
 
@@ -325,50 +347,53 @@ Kanban → İş akışı panosu (To Do → Doing → Done).
 
 
 
-**.NET Nedir?**
+## .NET Nedir?
 
-.NET, Microsoft tarafından geliştirilen, farklı platformlarda (Windows, Linux, macOS) çalışan uygulama geliştirme platformudur.
+- Microsoft tarafından geliştirilen, farklı platformlarda (Windows, Linux, macOS) çalışan uygulama geliştirme platformudur.
 
-Web, masaüstü, mobil, oyun, IoT ve bulut uygulamaları geliştirmek için kullanılabilir.
+- Web, masaüstü, mobil, oyun, IoT ve bulut uygulamaları geliştirmek için kullanılabilir.
 
-C#, F#, VB.NET gibi dilleri destekler.
+- C#, F#, VB.NET gibi dilleri destekler.
 
-İçinde CLR (Common Language Runtime) adlı bir çalışma zamanı bulunur → bu sayede kodlar güvenli, hızlı ve yönetilebilir şekilde çalışır.
+- İçinde CLR (Common Language Runtime) adlı bir çalışma zamanı bulunur → bu sayede kodlar güvenli, hızlı ve yönetilebilir şekilde çalışır.
 
 <hr>
 
 **Tarihçesi**
 
-2002: İlk kez .NET Framework 1.0 yayımlandı. Sadece Windows üzerinde çalışıyordu.
+- 2002: İlk kez .NET Framework 1.0 yayımlandı. Sadece Windows üzerinde çalışıyordu.
 
-2016: Microsoft, .NET Core’u çıkardı → açık kaynak ve cross-platform oldu.
+- 2016: Microsoft, .NET Core’u çıkardı → açık kaynak ve cross-platform oldu.
 
-2020: .NET 5 yayımlandı → Framework ve Core birleşti. Artık sadece “.NET” olarak adlandırılıyor.
+- 2020: .NET 5 yayımlandı → Framework ve Core birleşti. Artık sadece “.NET” olarak adlandırılıyor.
 
-Günümüz: En güncel sürüm .NET 8 (LTS), performans ve platform desteği çok gelişmiş durumda.
+- Günümüz: En güncel sürüm .NET 8 (LTS), performans ve platform desteği çok gelişmiş durumda.
 
 <hr>
 
 **Amacı**
 
-Yazılım geliştirmeyi kolaylaştırmak,
+- Yazılım geliştirmeyi kolaylaştırmak,
 
-Farklı cihaz ve platformlarda ortak bir yapı sağlamak,
+- Farklı cihaz ve platformlarda ortak bir yapı sağlamak,
 
-Performanslı, güvenli ve ölçeklenebilir uygulamalar geliştirmeyi mümkün kılmak.
+- Performanslı, güvenli ve ölçeklenebilir uygulamalar geliştirmeyi mümkün kılmak.
 
 <hr>
 
 **Neden Kullanılır?**
 
- Çapraz platform: Windows, Linux, macOS’ta çalışır.<br>
- Çok amaçlı: Web (ASP.NET), masaüstü (WPF, WinForms), mobil (.NET MAUI, Xamarin), oyun (Unity), bulut (Azure) gibi birçok alanda kullanılabilir.<br>
- Açık kaynak ve güçlü topluluk desteği var.<br>
- Yüksek performans ve güvenlik sağlar.<br>
- Düzenli olarak güncellenir, Microsoft ve açık kaynak topluluk tarafından desteklenir.<br>
+ - Çapraz platform: Windows, Linux, macOS’ta çalışır.<br>
+ - Çok amaçlı: Web (ASP.NET), masaüstü (WPF, WinForms), mobil (.NET MAUI, Xamarin), oyun (Unity), bulut (Azure) gibi birçok alanda kullanılabilir.<br>
+ - Açık kaynak ve güçlü topluluk desteği var.<br>
+ - Yüksek performans ve güvenlik sağlar.<br>
+ - Düzenli olarak güncellenir, Microsoft ve açık kaynak topluluk tarafından desteklenir.
+ 
+  <br>
+  
 </details>
 
-  <details>
+<details>
 
 <summary><strong>.NET Framework, .NET Core ve .NET 7/8+ farkları<strong></summary>
 
@@ -385,7 +410,7 @@ Performanslı, güvenli ve ölçeklenebilir uygulamalar geliştirmeyi mümkün k
 
 
 
-## Günlük Hayattan Benzetmeler:
+**Günlük Hayattan Benzetmeler:**
 
 - Sırada beklemek → Kasada bir müşteri işini bitirmeden diğerine geçilmez.
 
@@ -398,18 +423,17 @@ print("Dosya okunuyor...")
 data = open("veri.txt").read()   # Bu işlem bitene kadar beklenir
 print("Dosya okundu:", data)
 ```
-## Artı/Eksi Yönleri:
+**Artı/Eksi Yönleri:**
 
 - Kod Akışı Basittir. Takip etmesi kolaydır.
 - Uzun süren işlemler(dosya okuma API çağrısı tüm süreci bloke eder).
 
-<hr>
 
 ## 👨‍💻Asenkron Programlama Nedir:
 
 - Asenkron programlama, işlemlerin eşzamanlı olarak yürütülmesine izin veren bir modeldir. Bir görev tamamlanana kadar diğerleri beklemek zorunda değildir; uzun süren işlemler arka planda devam ederken program diğer işlere geçebilir.
 
-## Günlük Hayattan Benzetmeler
+**Günlük Hayattan Benzetmeler**
 
 - Restoranda sipariş vermek → Garson siparişini alır, mutfağa iletir ve senin yemeğini beklemeden başka müşterilerle ilgilenir.
 
@@ -443,11 +467,13 @@ asyncio.run(main())
  ```
 - Func<int, int> kare = x => x * x;
 ```
-
+ <br>
 
 **2.Anonim Fonksiyonlar**
   - İsmi olmayan, tek satırlık fonksiyonlar oluşturmak için kullanılır.
   - Event, delegate veya LINQ işlemlerinde sık kullanılır.
+
+ <br>
 
 **3.LINQ Sorgularında Kullanımı**
   - Veri filtreleme, sıralama, seçim işlemlerinde pratik yazım sağlar.
@@ -455,6 +481,7 @@ asyncio.run(main())
 ```
 var ciftSayilar = sayilar.Where(x => x % 2 == 0);
 ```
+  <br>
   
 **4.Expression-bodied Members (C# 6.0 ve sonrası)**
 
@@ -464,6 +491,7 @@ var ciftSayilar = sayilar.Where(x => x % 2 == 0);
 public string Name { get; set; }
 public override string ToString() => $"Name: {Name}";
 ```
+<br>
 
 **5.Okunabilirlik ve Modern Syntax**
 
@@ -471,6 +499,8 @@ public override string ToString() => $"Name: {Name}";
   - Geleneksel anonim metod yazımına kıyasla daha derli toplu bir alternatiftir.
 </details>
 
+ <br>
+ 
 ## 3.Backend Geliştirme Temelleri🅱️
 
 <details>
